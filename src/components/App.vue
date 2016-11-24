@@ -2,7 +2,10 @@
   <div id="app">
     <h1 class="header">Shopping Cart Example</h1>
     <div class="row">
-      <div class="col s8">
+      <div class="col s2">
+        <street-list></street-list>
+      </div>
+      <div class="col s6">
         <h2 class="header">Products</h2>
         <product-list></product-list>
       </div>
@@ -16,7 +19,8 @@
 <script>
   import ProductList from './ProductList.vue'
   import Cart from './Cart.vue'
+  import StreetList from './StreetList.vue'
   export default {
-    components: {ProductList, Cart}
+    components: {ProductList, Cart, StreetList}
   }
 </script>

@@ -4,6 +4,7 @@ import * as actions from './actions'
 import * as getters from './getters'
 import cart from './modules/cart'
 import products from './modules/products'
+import streets from './modules/streets'
 
 Vue.use(Vuex)
 
@@ -14,7 +15,8 @@ export default new Vuex.Store({
   getters,
   modules: {
     cart,
-    products
+    products,
+    streets
   },
   strict: debug
   // plugins: debug ? [createLogger()] : []
