@@ -4,8 +4,9 @@
 
 Used
 * https://vuejs.org/
-* http://vuex.vuejs.org/
-* http://materializecss.com/
+* http://vuex.vuejs.org/ (state)
+* http://materializecss.com/ (design)
+* https://github.com/github/fetch (api)
 
 
 ## Build Setup

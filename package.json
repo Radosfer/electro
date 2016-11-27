@@ -10,9 +10,10 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
+    "materialize-css": "*",
     "vue": "^2.0.1",
     "vuex": "*",
-    "materialize-css": "*"
+    "whatwg-fetch": "^2.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",
