@@ -4,13 +4,15 @@ import * as types from '../mutation-types'
 // initial state
 const state = {
   all: [],
-  loaded: false
+  loaded: false,
+  current: null
 }
 
 // getters
 const getters = {
   allStreets: state => state.all,
-  loaded: state => state.loaded
+  loaded: state => state.loaded,
+  current: state => state.current
 }
 
 // actions
@@ -21,6 +23,7 @@ const actions = {
     })
   },
   selectStreet ({commit}, street) {
+    commit(types.SELECT_STREET, {street})
     api.getHouses(street, houses => {
       console.log(houses)
     })
@@ -32,6 +35,9 @@ const mutations = {
   [types.RECEIVE_STREETS] (state, {streets}) {
     state.all = streets
     state.loaded = true
+  },
+  [types.SELECT_STREET] (state, {street}) {
+    state.current = street
   }
 }
 

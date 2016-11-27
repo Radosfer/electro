@@ -8,10 +8,10 @@ import 'materialize-css/dist/js/materialize'
 
 Vue.filter('currency', currency)
 
-var app = new Vue({
+const app = new Vue({
   el: '#app',
   store,
   render: h => h(App)
 })
 
-app()
+app
