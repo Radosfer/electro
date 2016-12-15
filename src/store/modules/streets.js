@@ -11,21 +11,21 @@ const state = {
 // getters
 const getters = {
   allStreets: state => state.all,
-  loaded: state => state.loaded,
-  current: state => state.current
+  loadedStreet: state => state.loaded,
+  currentStreet: state => state.current
 }
 
 // actions
 const actions = {
   getAllStreets ({commit}) {
     api.getStreets(streets => {
-      commit(types.RECEIVE_STREETS, {streets})
+      commit(types.STREETS_RECEIVE, {streets})
     })
   },
   selectStreet ({commit}, street) {
     commit(types.STREET_SELECT, {street})
     api.getHouses(street, houses => {
-      console.log(houses)
+      commit(types.HOUSES_RECEIVE, {houses})
     })
   },
   editStreet ({commit}, data) {
@@ -51,7 +51,7 @@ const mutations = {
   [types.STREET_LOADED] (state) {
     state.loaded = false
   },
-  [types.RECEIVE_STREETS] (state, {streets}) {
+  [types.STREETS_RECEIVE] (state, {streets}) {
     state.all = streets
     state.loaded = true
   },

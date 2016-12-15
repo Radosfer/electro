@@ -44,8 +44,8 @@
     },
     computed: mapGetters({
       streets: 'allStreets',
-      loaded: 'loaded',
-      current: 'current'
+      loaded: 'loadedStreet',
+      current: 'currentStreet'
     }),
     methods: {
       ...mapActions([
@@ -88,6 +88,12 @@
 
   .fade-enter, .fade-leave {
     opacity: 0;
+  }
+
+  .collection-item {
+    a {
+      white-space: nowrap;
+    }
   }
 
 </style>

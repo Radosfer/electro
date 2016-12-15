@@ -6,7 +6,7 @@
                 <street-list></street-list>
             </div>
             <div class="col s8">
-                <street-list></street-list>
+                <house-list></house-list>
             </div>
             <div class="col s2">
                 <street-list></street-list>
@@ -25,12 +25,16 @@
     </div>
 </template>
 
-<script>
+<script type="text/babel">
 //  import ProductList from './ProductList.vue'
 //  import Cart from './Cart.vue'
   import StreetList from './StreetList.vue'
+  import HouseList from './HouseList.vue'
   export default {
-    components: {StreetList}
+    components: {
+      StreetList,
+      HouseList
+    }
 //    components: {ProductList, Cart, StreetList}
   }
 
