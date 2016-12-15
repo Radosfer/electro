@@ -4,27 +4,25 @@
       <li class="collection-header">
         <h5>
           Улицы
-          <a href="#!" class="green-text right" @click="doEdit()"><i class="tiny material-icons">mode_edit</i></a>
+          <a href="#!" class="green-text right" @click="doEdit()"><i class="tiny material-icons">add</i></a>
         </h5>
       </li>
       <li class="collection-item" v-if="!editMode" v-for="p in streets" :class="{active: p === current}"
           transition="fade">
-        <a href="#!"
-           @click="selectStreet(p)">
-          {{ p.title }}
-        </a>
+        <street :street="p"></street>
       </li>
       <li class="collection-item" v-if="editMode">
         <form>
           <div class="row">
-            <div class="input-field col s8">
-              <input id="street" type="text" class="validate">
+            <div class="input-field col s12">
+              <input
+                      id="street"
+                      type="text"
+                      class="validate"
+                      v-focus="editMode"
+                      @keyup.enter="doneEdit"
+                      @keyup.esc="cancelEdit">
               <label for="street">Название</label>
-            </div>
-            <div class="input-field col s4">
-              <button class="btn-floating waves-effect waves-light green">
-                <i class="material-icons">add</i>
-              </button>
             </div>
           </div>
         </form>
@@ -34,9 +32,10 @@
   </div>
 </template>
 
-<script>
+<script type="text/babel">
   import {mapGetters, mapActions} from 'vuex'
   import Spinner from './Spinner.vue'
+  import street from './street.vue'
   export default {
     data () {
       return {
@@ -50,16 +49,27 @@
     }),
     methods: {
       ...mapActions([
-        'selectStreet'
+        'selectStreet',
+        'addStreet'
       ]),
       doEdit () {
         this.editMode = !this.editMode
+      },
+      doneEdit (e) {
+        const value = e.target.value.trim()
+        if (value && this.editMode) {
+          this.addStreet(value)
+        }
+        this.cancelEdit()
+      },
+      cancelEdit () {
+        this.editMode = false
       }
     },
     created () {
       this.$store.dispatch('getAllStreets')
     },
-    components: {Spinner}
+    components: {Spinner, street}
   }
 
 </script>

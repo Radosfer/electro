@@ -23,10 +23,16 @@ const actions = {
     })
   },
   selectStreet ({commit}, street) {
-    commit(types.SELECT_STREET, {street})
+    commit(types.STREET_SELECT, {street})
     api.getHouses(street, houses => {
       console.log(houses)
     })
+  },
+  editStreet ({commit}, data) {
+    commit(types.STREET_EDITED, data)
+  },
+  addStreet ({commit}, title) {
+    commit(types.STREET_ADD, title)
   }
 }
 
@@ -36,8 +42,22 @@ const mutations = {
     state.all = streets
     state.loaded = true
   },
-  [types.SELECT_STREET] (state, {street}) {
+  [types.STREET_SELECT] (state, {street}) {
     state.current = street
+  },
+  [types.STREET_EDITED] (state, data) {
+    for (let i in state.all) {
+      if (state.all[i].id === data.street.id) {
+        state.all[i].title = data.value
+      }
+    }
+    // state.current = data.street
+  },
+  [types.STREET_ADD] (state, title) {
+    state.all.push({
+      id: 20,
+      title: title
+    })
   }
 }
 
