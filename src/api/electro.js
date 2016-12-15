@@ -16,6 +16,22 @@ export default {
       .then((json) => cb(json))
       .catch((ex) => console.log('street parsing failed', ex))
   },
+  addStreet (title, cb) {
+    this.delay(1000)
+      .then(() => cb({
+        id: 20,
+        title: title
+      }))
+      .catch((ex) => console.log('street adding failed', ex))
+  },
+  editStreet (street, title, cb) {
+    this.delay(1000)
+      .then(() => cb({
+        id: street.id,
+        title: title
+      }))
+      .catch((ex) => console.log('street edit failed', ex))
+  },
   filterHouses (json, street, cb) {
     var houses = json.filter((house) => house.street_id === street.id)
     return cb(houses)

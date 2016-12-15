@@ -39,7 +39,6 @@
         const { street } = this
         if (value && this.editMode) {
           this.editStreet({street, value})
-          this.selectStreet(street)
         }
         this.cancelEdit()
       },
