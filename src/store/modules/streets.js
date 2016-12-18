@@ -18,13 +18,14 @@ const getters = {
 // actions
 const actions = {
   getAllStreets ({commit}) {
-    api.getStreets(streets => {
+    api.street.getStreets(streets => {
       commit(types.STREETS_RECEIVE, {streets})
     })
   },
   selectStreet ({commit}, street) {
     commit(types.STREET_SELECT, {street})
-    api.getHouses(street, houses => {
+    commit(types.GROUP_SELECT, {})
+    api.street.getHouses(street, houses => {
       commit(types.HOUSES_RECEIVE, {houses})
     })
   },
@@ -32,7 +33,7 @@ const actions = {
     for (let i in state.all) {
       if (state.all[i].id === data.street.id) {
         commit(types.STREET_LOADED)
-        api.editStreet(state.all[i], data.value, street => {
+        api.street.editStreet(state.all[i], data.value, street => {
           commit(types.STREET_EDITED, street)
         })
       }
@@ -40,8 +41,17 @@ const actions = {
   },
   addStreet ({commit}, title) {
     commit(types.STREET_LOADED)
-    api.addStreet(title, street => {
+    api.street.addStreet(title, street => {
       commit(types.STREET_ADD, street)
+    })
+  },
+  deleteStreet ({commit}, street) {
+    commit(types.STREET_LOADED)
+    api.street.deleteStreet(street, result => {
+      if (result) {
+        let i = state.all.indexOf(street)
+        commit(types.STREET_DELETE, i)
+      }
     })
   }
 }
@@ -68,6 +78,10 @@ const mutations = {
   },
   [types.STREET_ADD] (state, street) {
     state.all.push(street)
+    state.loaded = true
+  },
+  [types.STREET_DELETE] (state, i) {
+    state.all.splice(i, 1)
     state.loaded = true
   }
 }

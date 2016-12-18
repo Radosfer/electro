@@ -2,18 +2,18 @@
   <div>
     <span v-show="!editMode">
       <a href="#!"
-         @click="selectStreet(street)">
-        {{ street.title }}
+         @click="selectGroup(group)">
+        {{ group.title }}
       </a>
       <span class="a right">
         <a href="#!" class="green-text" @click="doEdit()"><i class="tiny material-icons">mode_edit</i></a>
-        <a href="#!" class="red-text" @click="doDelete(street)"><i class="tiny material-icons">delete</i></a>
+        <a href="#!" class="red-text" @click="doEdit()"><i class="tiny material-icons">delete</i></a>
       </span>
     </span>
     <input class="edit"
            v-show="editMode"
            v-focus="editMode"
-           :value="street.title"
+           :value="group.title"
            @keyup.enter="doneEdit"
            @keyup.esc="cancelEdit"
            @blur="doneEdit">
@@ -25,24 +25,19 @@
   import crud from '../mixin/crud'
   export default {
     mixins: [crud],
-    props: ['street'],
+    props: ['group'],
     methods: {
       ...mapActions([
-        'selectStreet',
-        'editStreet',
-        'deleteStreet'
+        'selectGroup',
+        'editGroup'
       ]),
       doneEdit (e) {
         const value = e.target.value.trim()
-        const {street} = this
+        const {group} = this
         if (value && this.editMode) {
-          this.editStreet({street, value})
+          this.editGroup({group, value})
         }
         this.cancelEdit()
-      },
-      doDelete () {
-        const {street} = this
-        this.deleteStreet(street)
       }
     }
   }

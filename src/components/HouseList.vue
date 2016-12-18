@@ -2,10 +2,11 @@
   <div>
     <ul class="collection with-header z-depth-2 hoverable" v-show="loaded">
       <li class="collection-header">
-        <h6>
+        <h5>
+          <i class="small material-icons teal-text">store</i>
           Дома
           <a href="#!" class="green-text right" @click="doEdit()"><i class="tiny material-icons">add</i></a>
-        </h6>
+        </h5>
       </li>
       <li class="collection-item" v-if="!editMode" v-for="p in houses" :class="{active: p === current}"
       transition="fade">

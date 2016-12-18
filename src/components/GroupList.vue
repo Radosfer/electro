@@ -3,19 +3,19 @@
     <ul class="collection with-header z-depth-2 hoverable" v-show="loaded">
       <li class="collection-header">
         <h5>
-          Улицы
+          Группы
           <a href="#!" class="green-text right" @click="doEdit()"><i class="tiny material-icons">add</i></a>
         </h5>
       </li>
       <li
               class="collection-item"
               v-if="!editMode"
-              v-for="p in streets"
+              v-for="p in groups"
               v-on:mouseover="mouseOver(p)"
               v-on:mouseout="mouseOut()"
               :class="{active: p === current, actions: p === actions}"
               transition="fade">
-        <street :street="p"></street>
+        <group :group="p"></group>
       </li>
       <li class="collection-item" v-if="editMode">
         <form>
@@ -41,38 +41,33 @@
 <script type="text/babel">
   import {mapGetters, mapActions} from 'vuex'
   import Spinner from './Spinner.vue'
-  import street from './street.vue'
+  import group from './group.vue'
   import over from '../mixin/mouse'
   import crud from '../mixin/crud'
   export default {
     mixins: [over, crud],
-    // data () {
-    //   return {
-    //     editMode: false
-    //   }
-    // },
     computed: mapGetters({
-      streets: 'allStreets',
-      loaded: 'loadedStreet',
-      current: 'currentStreet'
+      groups: 'allGroups',
+      loaded: 'loadedGroup',
+      current: 'currentGroup'
     }),
     methods: {
       ...mapActions([
-        'selectStreet',
-        'addStreet'
+        'selectGroup',
+        'addGroup'
       ]),
       doneEdit (e) {
         const value = e.target.value.trim()
         if (value && this.editMode) {
-          this.addStreet(value)
+          this.addGroup(value)
         }
         this.cancelEdit()
       }
     },
     created () {
-      this.$store.dispatch('getAllStreets')
+      this.$store.dispatch('getAllGroups')
     },
-    components: {Spinner, street}
+    components: {Spinner, group}
   }
 
 </script>
