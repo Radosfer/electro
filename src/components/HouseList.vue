@@ -1,19 +1,21 @@
 <template>
-  <div>
-    <ul class="collection with-header z-depth-2 hoverable" v-show="loaded">
-      <li class="collection-header">
+  <div class="row">
+    <div class="col s12">
+      <div class="card-panel">
         <h5>
-          <i class="small material-icons teal-text">store</i>
           Дома
           <a href="#!" class="green-text right" @click="doEdit()"><i class="tiny material-icons">add</i></a>
         </h5>
-      </li>
-      <li class="collection-item" v-if="!editMode" v-for="p in houses" :class="{active: p === current}"
-      transition="fade">
-      <house :house="p"></house>
-      </li>
-    </ul>
-    <spinner :loaded="loaded"></spinner>
+        <div class="row" v-show="loaded">
+          <div class="col s6" v-if="!editMode" v-for="p in houses" :class="{active: p === current}"
+               transition="fade">
+
+            <house :house="p"></house>
+          </div>
+        </div>
+        <spinner :loaded="loaded"></spinner>
+      </div>
+    </div>
   </div>
 </template>
 
