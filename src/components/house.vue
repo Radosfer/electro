@@ -53,45 +53,45 @@
       }
     },
     computed: {
-      street: function () {
+      street () {
         return api
                 .getStreetById(this.house.street_id)
       },
-      group: function () {
+      group () {
         return api
                 .getGroupById(this.house.group_id)
       },
-      streetPair: function () {
+      streetPair () {
         return {
           name: 'Улица:',
           value: this.street.title
         }
       },
-      groupPair: function () {
+      groupPair () {
         return {
           name: 'Группа:',
           value: this.group.title
         }
       },
-      ownerPair: function () {
+      ownerPair () {
         return {
           name: 'ФИО:',
           value: 'Фамилия Имя Отчество'
         }
       },
-      phonePair: function () {
+      phonePair () {
         return {
           name: 'Телефон:',
           value: '(050) 123-45-67'
         }
       },
-      lastPair: function () {
+      lastPair () {
         return {
           name: 'Передача показаний:',
           value: '12/12/2016'
         }
       },
-      valuePair: function () {
+      valuePair () {
         return {
           name: 'Показания:',
           value: 226

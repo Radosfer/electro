@@ -18,7 +18,7 @@
       }
     },
     computed: {
-      classColor: function () {
+      classColor () {
         return {
           [this.color + '-text']: true
         }
