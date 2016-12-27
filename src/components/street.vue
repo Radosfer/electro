@@ -23,6 +23,7 @@
 <script type="text/babel">
   import {mapActions} from 'vuex'
   import crud from '../mixin/crud'
+  import vswal from '../api/swal'
   export default {
     mixins: [crud],
     props: ['street'],
@@ -42,7 +43,17 @@
       },
       doDelete () {
         const {street} = this
-        this.deleteStreet(street)
+        vswal({
+          title: 'Вы уверены?',
+          text: 'Все дома с этой улицы будут удалены',
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#DD6B55',
+          confirmButtonText: 'Удалить',
+          cancelButtonText: 'Отмена'
+        }).then(() => {
+          this.deleteStreet(street)
+        })
       }
     }
   }

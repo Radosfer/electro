@@ -44,6 +44,15 @@ const actions = {
     api.group.addGroup(title, group => {
       commit(types.GROUP_ADD, group)
     })
+  },
+  deleteGroup ({commit}, group) {
+    commit(types.GROUP_LOADED)
+    api.group.deleteGroup(group, result => {
+      if (result) {
+        let i = state.all.indexOf(group)
+        commit(types.GROUP_DELETE, i)
+      }
+    })
   }
 }
 
@@ -69,6 +78,10 @@ const mutations = {
   },
   [types.GROUP_ADD] (state, group) {
     state.all.push(group)
+    state.loaded = true
+  },
+  [types.GROUP_DELETE] (state, i) {
+    state.all.splice(i, 1)
     state.loaded = true
   }
 }

@@ -109,16 +109,35 @@ export default {
           _houses = json
           return this.filterHouses(json, street, cb)
         }).catch((ex) => console.log('group parsing failed', ex))
+    },
+    deleteGroup (group, cb) {
+      // _streets.indexOf(street)
+      // new list of streets
+      delay(1000)
+        .then(() => cb(true))
+        .catch((ex) => console.log('group delete failed', ex))
     }
   },
   getStreetById (id) {
-    return _streets.find((element) => {
+    let street = _streets.find((element) => {
       return element.id === id
     })
+    if (street !== undefined) {
+      return street
+    }
+    return {
+      title: ''
+    }
   },
   getGroupById (id) {
-    return _groups.find((element) => {
+    let group = _groups.find((element) => {
       return element.id === id
     })
+    if (group !== undefined) {
+      return group
+    }
+    return {
+      title: ''
+    }
   }
 }
