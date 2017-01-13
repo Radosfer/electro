@@ -13,6 +13,7 @@ module.exports = {
   "globals": {
     "sweetAlert": true,
     "swal": true,
+    "jQuery": true
   },
   // add your custom rules here
   'rules': {
