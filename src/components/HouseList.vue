@@ -23,12 +23,9 @@
   import {mapGetters, mapActions} from 'vuex'
   import Spinner from './Spinner.vue'
   import house from './house.vue'
+  import crud from '../mixin/crud'
   export default {
-    data () {
-      return {
-        editMode: false
-      }
-    },
+    mixins: [crud],
     computed: mapGetters({
       houses: 'allHouses',
       loaded: 'loadedHouse',
@@ -38,18 +35,12 @@
       ...mapActions([
         'selectHouse'
       ]),
-      doEdit () {
-        this.editMode = !this.editMode
-      },
       doneEdit (e) {
         // const value = e.target.value.trim()
         // if (value && this.editMode) {
         //   this.addStreet(value)
         // }
         // this.cancelEdit()
-      },
-      cancelEdit () {
-        this.editMode = false
       }
     },
     components: {Spinner, house}
