@@ -45,10 +45,6 @@
   import {mapActions} from 'vuex'
   import api from '../api/electro'
   import pair from './pair.vue'
-<<<<<<< HEAD
-=======
-  import tabs from './tabs.vue'
->>>>>>> origin/master
   export default{
     props: ['house'],
     data () {
