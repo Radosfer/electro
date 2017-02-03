@@ -84,5 +84,15 @@
   "engines": {
     "node": ">= 4.0.0",
     "npm": ">= 3.0.0"
-  }
+  },
+  "main": ".eslintrc.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Radosfer/electro.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Radosfer/electro/issues"
+  },
+  "homepage": "https://github.com/Radosfer/electro#readme"
 }
