@@ -2,9 +2,9 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import * as actions from './actions'
 import * as getters from './getters'
-import cart from './modules/cart'
-import products from './modules/products'
 import streets from './modules/streets'
+import houses from './modules/houses'
+import groups from './modules/groups'
 
 Vue.use(Vuex)
 
@@ -14,9 +14,9 @@ export default new Vuex.Store({
   actions,
   getters,
   modules: {
-    cart,
-    products,
-    streets
+    streets,
+    houses,
+    groups
   },
   strict: debug
   // plugins: debug ? [createLogger()] : []
